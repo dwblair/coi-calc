@@ -16,13 +16,20 @@ startingYear = 2017
 digitizationCostPerItem = 60
 
 annualPercentageIncreaseInCostOfDigitization = .16
-
-AnnualCostPerItemWithIncrease 
+ 
+# initialize values
+AnnualCostPerItemWithIncrease = digitizationCostPerItem
 
 for year in range(2014, 2028):
 
     timeElapsed=year-startYear
+
     media = collectionSize + shapeParam - shapeParam*math.exp(timeElapsed/meanLifetime)
 
+
     if (media > 0):
-         print year, round(media)
+         print year, timeElapsed, AnnualCostPerItemWithIncrease, round(media)
+
+
+    # update values
+    AnnualCostPerItemWithIncrease = AnnualCostPerItemWithIncrease + annualPercentageIncreaseInCostOfDigitization * AnnualCostPerItemWithIncrease
